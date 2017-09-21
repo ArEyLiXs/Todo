@@ -1,0 +1,26 @@
+<div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+  <input [(ngModel)]="searchStr" id="search" type="text" class="form-control" name="search" placeholder="Search">
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th style="width:50px;"></th>
+      <th>ID</th>
+      <th>Bezeichnung</th>
+      <th>Kategorie</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tr *ngFor="let item of todos | todoSearch: searchStr" (click)="toggle(item)">
+    <td><span *ngIf="item.done" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+      <td>{{ item.id }}</td>
+      <td>{{ item.label }}</td>
+      <td>{{ item.category.label }}</td>
+      <td>
+        <button (click)="delete(item)" type=" button " class="btn btn-primary ">
+          <span  class="glyphicon glyphicon-trash " aria-hidden="true "></span>
+        </button>
+      </td>
+  </tr>
+</table>

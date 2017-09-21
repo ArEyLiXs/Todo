@@ -1,0 +1,38 @@
+<div class="form-horizontal">
+
+  <!-- Form Name -->
+  <legend>Lucas Todo</legend>
+  <app-priority-chooser [currentlySelectedPriority]="newTodo.priority" (priorityUpdated)="setPriority($event)"></app-priority-chooser>
+
+  <!-- Text input-->
+  <div class="form-group" [class.has-error]="checklabel()">
+    <label class="col-md-4 control-label" for="textinput">Bezeichnung</label>
+    <div class="col-md-5">
+      <input [(ngModel)]="todo.label" (blur)="labelblur = true" id="textinput" name="textinput" type="text" placeholder="Was wollen Sie tun?"
+        class="form-control input-md">
+
+    </div>
+  </div>
+
+  <!-- Select Basic -->
+  <div class="form-group" [class.has-error]="checkcat()">
+    <label class="col-md-4 control-label" for="selectbasic">Kategorie</label>
+    <div class="col-md-4">
+      <select [(ngModel)]="todo.category" (blur)="catblur = true" id="selectbasic" name="selectbasic" class="form-control">
+        <option *ngFor="let cat of category"[ngValue]="cat"> {{cat.label}} </option>
+    </select>
+      <div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="singlebutton"></label>
+    <div class="col-md-4">
+      <button (click)="save(todo)" id="singlebutton" name="singlebutton" class="btn btn-primary">speichern</button>
+    </div>
+  </div>
+
+</div>
