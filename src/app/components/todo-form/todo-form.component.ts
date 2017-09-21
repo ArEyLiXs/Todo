@@ -3,6 +3,7 @@ import { TodoDataService } from '../../services/todo-data.service';
 import { Todo } from '../../models/todo';
 import { TodoCategoryService } from '../../services/todo-category.service';
 import { TodoAlertService } from '../../services/todo-alert.service';
+import { TodoEntry } from '../../models/TodoEntry';
 
 @Component({
   selector: 'app-todo-form',
@@ -14,6 +15,9 @@ export class TodoFormComponent implements OnInit {
   todo: Todo = new Todo();
   catblur = false;
   labelblur = false;
+
+  newTodo: TodoEntry = new TodoEntry();
+
 
   constructor(
     private todoDataService: TodoDataService,
@@ -29,6 +33,7 @@ export class TodoFormComponent implements OnInit {
     if (!this.checkcat() && !this.checklabel()) {
       this.todoDataService.add(todo);
       this.todo = new Todo();
+      this.newTodo = new TodoEntry();
     } else {
       this.todoAlertService.display('Missing informations', 'danger');
     }
@@ -50,5 +55,9 @@ export class TodoFormComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  setPriority(prio: number) {
+    this.newTodo.priority = prio;
   }
 }

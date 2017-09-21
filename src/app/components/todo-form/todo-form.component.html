@@ -2,8 +2,6 @@
 
   <!-- Form Name -->
   <legend>Lucas Todo</legend>
-  <app-priority-chooser [currentlySelectedPriority]="newTodo.priority" (priorityUpdated)="setPriority($event)"></app-priority-chooser>
-
   <!-- Text input-->
   <div class="form-group" [class.has-error]="checklabel()">
     <label class="col-md-4 control-label" for="textinput">Bezeichnung</label>
@@ -21,8 +19,8 @@
       <select [(ngModel)]="todo.category" (blur)="catblur = true" id="selectbasic" name="selectbasic" class="form-control">
         <option *ngFor="let cat of category"[ngValue]="cat"> {{cat.label}} </option>
     </select>
+      <app-priority-chooser [currentlySelectedPriority]="newTodo.priority" (priorityUpdated)="setPriority($event)"></app-priority-chooser>
       <div>
-
       </div>
     </div>
   </div>
